@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "client side tictactoe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pholcomb91/tictactoe.git"
+  },
+  "author": "Jenn, Will and Peter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pholcomb91/tictactoe/issues"
+  },
+  "homepage": "https://github.com/pholcomb91/tictactoe#readme",
+  "dependencies": {
+    "node.js": "^0.0.1-security",
+    "socket.io-client": "^4.5.4"
+  }
+}
