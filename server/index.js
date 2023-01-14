@@ -47,3 +47,4 @@ server.listen(3001, () => {
   console.log("SERVER RUNNING");
 });
 
+//Hopefully the backend socket.io chat is working now on the server :)
