@@ -18,6 +18,9 @@
   "homepage": "https://github.com/pholcomb91/tictactoe#readme",
   "dependencies": {
     "node.js": "^0.0.1-security",
+    "nodemon": "^2.0.20",
+    "reflect-metadata": "^0.1.13",
+    "socket-controllers": "^0.0.5",
     "socket.io-client": "^4.5.4"
   }
 }
