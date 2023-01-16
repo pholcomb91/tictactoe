@@ -1,6 +1,6 @@
-
 const express = require("express");
 const path = require("path");
+const cors = require('cors');
 const { io } = require("socket.io-client");
 
 //Apollo Server Import 
@@ -8,18 +8,18 @@ const { ApolloServer } = require("apollo-server-express");
 
 
 //Resolver and typeDefs
-const { typeDefs, resolvers } = require("./server/schemas");
+const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
 
 
 //Database
-const db = require("./server/config/connection");
+const db = require("./config/connection");
 
 
 
 //Express
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3001;
 
 
 //Apollo server
@@ -30,13 +30,20 @@ const server = new ApolloServer({
 });
 
 
-//Use Express with Apollo 
-server.applyMiddleware({ app });
+//Function to start up Apollo Server through Express and apply Middleware
+const startApolloServer = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+}
+
+//Call async function to start the server
+startApolloServer();
 
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 
 const _dirname = path.dirname("");
