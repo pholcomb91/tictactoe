@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-       me: async (parent, args, context) => {
+       user: async (parent, args, context) => {
         if (context.user) {
             const userData = await User.findOne({_id: context.user._id}).select("-_v -password"
             );
@@ -19,12 +19,12 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError("Invalid credentials");
+                throw new AuthenticationError("That player isn't on the board!");
             }
             const correctPassword = await user.isCorrectPassword(password);
 
             if (!correctPassword) {
-                throw new AuthenticationError("Invalid credentials");
+                throw new AuthenticationError("Wong password, loser!");
             }
 
             const token = signToken(user);
@@ -36,6 +36,15 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
+        updateScore: async (parent, { username, wtl }) => {
+            const updatedUser = await User.findOneAndUpdate(
+                { username },
+                { $inc: { [wtl]: 1 }},
+                { new: true }
+            );
+            return updatedUser;
+        }
     },
 };
   
