@@ -1,10 +1,6 @@
-
-
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema 
-//const  Schema1 = require('./   ');
 
 const userSchema = new Schema(
   {
@@ -23,18 +19,30 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-   
-  },
-  // This allows us to use a virtual
-  {
-    toJSON: {
-      virtuals: true,
+    wins: {
+      type: Number,
     },
+    losses: {
+      type: Number,
+    },
+    ties: {
+      type: Number,
+    }   
+});
+
+userSchema.pre('save', async function(next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
   }
-);
 
+  next();
+});
 
-
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+  
 const User = model('User', userSchema);
 
 module.exports = User;

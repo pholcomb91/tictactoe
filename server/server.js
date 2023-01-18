@@ -1,6 +1,6 @@
-
 const express = require("express");
 const path = require("path");
+const cors = require('cors');
 const { io } = require("socket.io-client");
 
 //Imports for chat socket.io
@@ -35,13 +35,20 @@ const server = new ApolloServer({
 });
 
 
-//Use Express with Apollo 
-server.applyMiddleware({ app });
+//Function to start up Apollo Server through Express and apply Middleware
+const startApolloServer = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+}
+
+//Call async function to start the server
+startApolloServer();
 
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 
 const _dirname = path.dirname("");
