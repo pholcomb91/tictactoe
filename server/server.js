@@ -13,12 +13,12 @@ const { ApolloServer } = require("apollo-server-express");
 
 
 //Resolver and typeDefs
-const { typeDefs, resolvers } = require("./server/schemas");
+const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
 
 
 //Database
-const db = require("./server/config/connection");
+const db = require("./config/connection");
 
 
 
