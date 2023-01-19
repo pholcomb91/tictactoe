@@ -8,6 +8,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SocketContext, socket } from './utils/socket';
+
+
 import Header from "./components/header";
 import Game from "./components/game";
 import HomePage from "./pages/homePage";
@@ -35,6 +38,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <SocketContext.Provider value = {socket}>
       <Router>
         <Header />
           <Routes>
@@ -44,6 +48,7 @@ function App() {
             <Route path="/game" element={<Game />} />
           </Routes>
       </Router>
+      </SocketContext.Provider>
     </ApolloProvider>
   );
 }
