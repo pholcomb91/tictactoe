@@ -14,6 +14,10 @@ const styles = {
         border: '1px solid #999',
         width: '200px',
         height: '200px'
+    },
+    chat: {
+        height: '60%',
+        width: '30%',
     }
 }
 function Game () {
@@ -47,6 +51,9 @@ function Game () {
                         <td style={styles.tdBig}>8</td>
                     </tr>
                 </table>
+            </div>
+            <div className="container border border-2 border-light rounded" style={styles.chat}>
+                <p>This is where chat will be</p>
             </div>
         </div>
     )
