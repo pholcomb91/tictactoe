@@ -9,7 +9,7 @@ const styles = {
 function Header () {
     return (
         <div className="d-flex text-center row m-5">
-            <h1 className="col-12" style={styles.h1}>Smack Talk Toe</h1>
+            <h1 className="col-12" style={styles.h1}>Smack Talk, Toe</h1>
         </div>
     )
 }
