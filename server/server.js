@@ -1,11 +1,9 @@
 const express = require("express");
 const path = require("path");
-const cors = require('cors');
+//const cors = require('cors');
 const { io } = require("socket.io-client");
 
-//Imports for chat socket.io
-const http = require("http");
-const cors = require("cors");
+
 
 
 //Apollo Server Import 
@@ -75,6 +73,11 @@ db.once("open", () => {
     console.log(`Please use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
+
+//Imports for chat socket.io
+const http = require("http");
+var cors = require("cors");
 
 //Here is where we get socket.io
 const { Server } = require("socket.io");
