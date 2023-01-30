@@ -5,6 +5,31 @@ import AuthService from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 import { useMutation } from "@apollo/client";
 
+const styles = {
+    h1: {
+      color: "whitesmoke",
+    },
+    form: {
+      border: "2px ",
+      borderRadius: "5px",
+      margin: "5px"
+    },
+    input: {
+      background: "#c3d898",
+      color: "#70161e",
+    },
+    btn: {
+      color: "black",
+      background: "#858585",
+      borderColor: "black"
+    },
+    button: {
+      color: "black",
+      background: "#858585",
+      borderColor: "black",
+      width: "10%"
+    }
+  }
 
 function SignUp () {
     // default state
@@ -49,50 +74,59 @@ function SignUp () {
 
     }
     return (
-    <div>
-        <h1>Welcome Stranger, would you like to lose a game of Smack Talk, Toe?</h1>
-        {data ? (
-              <Link to="/homepage">Let's do this!</Link>
-            ) : (
-            <form onSubmit={handleFormSubmit}>
-                <input
-                    className="form-input"
-                    placeholder="Your Username"
+    <div className="d-flex justify-content-center container">
+        <div className="row d-flex justify-content-center">
+            <h1 className='text-center col-12' style={styles.h1}>Welcome Stranger, would you like to lose a game of Smack Talk Toe?</h1>
+            {data ? (
+                <Link to="/homepage">Let's do this!</Link>
+                ) : (
+                <form onSubmit={handleFormSubmit} style={styles.form} className="d-flex justify-content-center col-6">
+                    <div className="m-1">
+                    <input 
+                    placeholder="Username"
                     name="userName"
                     type="text"
                     value={userFormData.userName}
-                    onChange={handleInputChange}
-                />
-                <input
-                    className="form-input"
+                    onChange={handleInputChange} 
+                    className="form-control" 
+                    />
+                    </div>
+                    <div className="m-1">
+                    <input 
                     placeholder="Your email"
                     name="email"
                     type="email"
                     value={userFormData.email}
-                    onChange={handleInputChange}
-                />
-                <input
-                    className="form-input"
+                    onChange={handleInputChange} 
+                    className="form-control" 
+                    />
+                    </div>
+                    <div className="m-1">
+                    <input 
                     placeholder="******"
                     name="password"
-                    type="password"
+                    type="password" 
+                    className="form-control" 
+                    id="exampleInputPassword1"
                     value={userFormData.password}
                     onChange={handleInputChange}
-                />  
-                <button
-                    className="btn btn-block btn-info"
-                    style={{ cursor: 'pointer' }}
-                    type="submit"
-                >
-                    SignUp
-                </button>
-            </form>
+                    />
+                    </div>  
+                    <button
+                        className="btn btn-info"
+                        style={styles.btn}
+                        type="submit"
+                    >
+                        SignUp
+                    </button>
+                </form>
+                )}
+            {error && (
+                <div>
+                    <p className="error-text">{error}</p>
+                </div>
             )}
-        {error && (
-            <div>
-                <p className="error-text">{error}</p>
-            </div>
-        )}
+        </div>
     </div>
     );
 }
