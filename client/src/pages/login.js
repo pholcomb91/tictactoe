@@ -5,8 +5,28 @@ import { LOGIN_USER} from '../utils/mutations';
 import AuthService from '../utils/auth';
 
 const styles = {
-  a: {
-    textdecoration: "none",
+  h1: {
+    color: "whitesmoke",
+  },
+  form: {
+    border: "2px ",
+    borderRadius: "5px",
+    margin: "5px"
+  },
+  input: {
+    background: "#c3d898",
+    color: "#70161e",
+  },
+  btn: {
+    color: "black",
+    background: "#858585",
+    borderColor: "black"
+  },
+  button: {
+    color: "black",
+    background: "#858585",
+    borderColor: "black",
+    width: "10%"
   }
 }
 
@@ -41,35 +61,44 @@ const Login = (props) => {
   };
 
     return (
-        <div>
-            <h1>Welcome Stranger, would you like to lose a game of Smack Talk, Toe?</h1>
+      <div className="d-flex justify-content-center container">
+        <div className="row d-flex justify-content-center">
+            <h1 className='text-center col-12' style={styles.h1}>Welcome Stranger, would you like to lose a game of Smack Talk Toe?</h1>
             {data ? (
-              <p><Link to="%PUBLIC_URL%/homepage">Take me Home</Link></p>
+              <Link to="/homepage">Take me Home</Link>
             ) : (
-            <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
+            <form onSubmit={handleFormSubmit} style={styles.form} className="d-flex justify-content-center">
+                <div className="m-1">
+                  <input 
                   placeholder="Your email"
                   name="email"
                   type="email"
                   value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
+                  onChange={handleChange} 
+                  className="form-control" 
+                  id="exampleInputEmail1" 
+                  aria-describedby="emailHelp"
+                  />
+                </div>
+                <div className="m-1">
+                  <input 
                   placeholder="******"
                   name="password"
-                  type="password"
+                  type="password" 
+                  className="form-control" 
+                  id="exampleInputPassword1"
                   value={formState.password}
                   onChange={handleChange}
-                />  
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
+                  />
+                </div> 
+                <Link
+                  className="btn btn-info m-1"
+                  style={ styles.btn }
                   type="submit"
+                  to="/homepage"
                 >
                   Login
-                </button>
+                </ Link>
             </form>
             )}
             {error && (
@@ -77,13 +106,16 @@ const Login = (props) => {
                 {error}
               </div>
             )}
-            <h2>Or</h2>
-            <button
+            <h2 className='text-center' style={styles.h1}>Or</h2>
+            <div className='d-flex justify-content-center'>
+              <button
                   className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                ><a href='/signup' style={styles.a}>Sign Up</a>
-            </button>
+                  style={styles.button}
+                ><a href='/signup' style={styles.button}>Sign Up</a>
+              </button>
+            </div>
         </div>
+      </div>
     )
 }
 

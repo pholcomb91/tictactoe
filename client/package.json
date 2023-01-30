@@ -4,6 +4,8 @@
   "description": "client side tictactoe",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +23,17 @@
     "nodemon": "^2.0.20",
     "reflect-metadata": "^0.1.13",
     "socket-controllers": "^0.0.5",
-    "socket.io-client": "^4.5.4"
+    "socket.io-client": "^4.5.4",
+    "@apollo/client": "^3.3.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "graphql": "^15.4.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   }
 }
