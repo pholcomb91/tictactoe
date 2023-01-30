@@ -1,11 +1,9 @@
 const express = require("express");
 const path = require("path");
-const cors = require('cors');
-const { io } = require("socket.io-client");
+//const cors = require('cors');
+//const { io } = require("socket.io-client");
 
-//Imports for chat socket.io
-const http = require("http");
-const cors = require("cors");
+
 
 
 //Apollo Server Import 
@@ -48,7 +46,7 @@ startApolloServer();
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 
 const _dirname = path.dirname("");
@@ -76,41 +74,46 @@ db.once("open", () => {
   });
 });
 
+
+//Imports for chat socket.io
+//const http = require("http");
+//const cors = require("cors");
+
 //Here is where we get socket.io
-const { Server } = require("socket.io");
-app.use(cors());
+//const { Server } = require("socket.io");
+//app.use(cors());
 
 
 
 //Creating a server to use socket.io
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
+//const io = new Server(server, {
+  //cors: {
+    //origin: "http://localhost:3000",
+    //methods: ["GET", "POST"],
+  //},
+//});
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
+//io.on("connection", (socket) => {
+  //console.log(`User Connected: ${socket.id}`);
 
 //Logic for joining a chat room
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
-  });
+  //socket.on("join_room", (data) => {
+    //socket.join(data);
+    //console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  //});
 
 //Logic for sending a message
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
-  });
+  //socket.on("send_message", (data) => {
+    //socket.to(data.room).emit("receive_message", data);
+  //});
 
-  socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
-  });
-});
+  //socket.on("disconnect", () => {
+    //console.log("User Disconnected", socket.id);
+  //});
+//});
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING");
-});
+//server.listen(3001, () => {
+  //console.log("SERVER RUNNING");
+//});
 
 //Hopefully the backend socket.io chat is working now on the server :)
